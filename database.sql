@@ -1,0 +1,56 @@
+CREATE DATABASE IF NOT EXISTS civicpulse CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE civicpulse;
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(190) NOT NULL UNIQUE,
+  phone VARCHAR(30) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('citizen','admin') NOT NULL DEFAULT 'citizen',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS reports (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  public_id VARCHAR(24) NOT NULL UNIQUE,
+  user_id BIGINT UNSIGNED NOT NULL,
+  vehicle VARCHAR(30) NOT NULL,
+  rto VARCHAR(80) NOT NULL,
+  violation VARCHAR(100) NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  photo_path VARCHAR(255) NULL,
+  status ENUM('Under review','Accepted','Rejected','Verified') NOT NULL DEFAULT 'Under review',
+  reward INT UNSIGNED NOT NULL DEFAULT 0,
+  reviewed_at DATETIME NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_reports_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_reports_user (user_id),
+  INDEX idx_reports_status (status)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS redemptions (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  public_id VARCHAR(24) NOT NULL UNIQUE,
+  user_id BIGINT UNSIGNED NOT NULL,
+  upi_id VARCHAR(120) NOT NULL,
+  coins INT UNSIGNED NOT NULL,
+  amount_inr DECIMAL(10,2) NOT NULL,
+  status ENUM('Requested','Approved','Rejected','Paid') NOT NULL DEFAULT 'Requested',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_redemptions_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_redemptions_user (user_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS support_messages (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id BIGINT UNSIGNED NOT NULL,
+  email VARCHAR(190) NOT NULL,
+  message TEXT NOT NULL,
+  status ENUM('Open','In progress','Resolved') NOT NULL DEFAULT 'Open',
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_support_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  INDEX idx_support_user (user_id)
+) ENGINE=InnoDB;

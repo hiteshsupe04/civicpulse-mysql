@@ -1,0 +1,3458 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CivicPulse</title>
+
+
+
+<style>
+
+:root{
+
+  --navy:#071827;
+
+  --navy2:#0d2438;
+
+  --blue:#1769aa;
+
+  --blue2:#2388d9;
+
+  --orange:#ff8a18;
+
+  --orange2:#ffb347;
+
+  --green:#16d995;
+
+  --red:#ff5d5d;
+
+  --white:#ffffff;
+
+  --muted:#9bb0c2;
+
+  --line:#274157;
+
+  --card:#10283d;
+
+  --bg:#061522;
+
+}
+
+
+
+*{
+
+  box-sizing:border-box;
+
+  margin:0;
+
+  padding:0;
+
+  font-family:Arial,Helvetica,sans-serif;
+
+}
+
+
+
+body{
+
+  background:#020b13;
+
+  color:white;
+
+  min-height:100vh;
+
+}
+
+
+
+button,
+
+input,
+
+select,
+
+textarea{
+
+  font:inherit;
+
+}
+
+
+
+button{
+
+  cursor:pointer;
+
+}
+
+
+
+.hidden{
+
+  display:none!important;
+
+}
+
+
+
+/* AUTH */
+
+
+
+.auth-page{
+
+  min-height:100vh;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:25px;
+
+  background:
+
+    radial-gradient(circle at top right,#173c5c 0,#061522 40%,#020b13 100%);
+
+}
+
+
+
+.auth-box{
+
+  width:100%;
+
+  max-width:430px;
+
+  background:#0b2032;
+
+  border:1px solid #29465e;
+
+  border-radius:22px;
+
+  padding:35px;
+
+  box-shadow:0 25px 80px rgba(0,0,0,.45);
+
+}
+
+
+
+.logo{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-bottom:30px;
+
+  font-size:25px;
+
+  font-weight:800;
+
+}
+
+
+
+.logo-icon{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:12px;
+
+  background:var(--orange);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#101820;
+
+  font-weight:900;
+
+}
+
+
+
+.auth-box h1{
+
+  font-size:38px;
+
+  margin-bottom:8px;
+
+}
+
+
+
+.auth-box p{
+
+  color:var(--muted);
+
+  margin-bottom:25px;
+
+  line-height:1.5;
+
+}
+
+
+
+.form-group{
+
+  margin-bottom:17px;
+
+}
+
+
+
+.form-group label{
+
+  display:block;
+
+  color:#c9d7e2;
+
+  font-size:14px;
+
+  margin-bottom:8px;
+
+}
+
+
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+  width:100%;
+
+  background:#081a29;
+
+  border:1px solid #345066;
+
+  color:white;
+
+  padding:13px 14px;
+
+  border-radius:9px;
+
+  outline:none;
+
+}
+
+
+
+.form-group textarea{
+
+  min-height:120px;
+
+  resize:vertical;
+
+}
+
+
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus{
+
+  border-color:var(--orange);
+
+}
+
+
+
+.primary-btn{
+
+  width:100%;
+
+  border:0;
+
+  background:var(--orange);
+
+  color:#171717;
+
+  font-weight:800;
+
+  padding:14px;
+
+  border-radius:9px;
+
+  transition:.2s;
+
+}
+
+
+
+.primary-btn:hover{
+
+  background:var(--orange2);
+
+  transform:translateY(-1px);
+
+}
+
+
+
+.secondary-btn{
+
+  border:1px solid #456177;
+
+  background:#112c42;
+
+  color:white;
+
+  padding:12px 16px;
+
+  border-radius:9px;
+
+}
+
+
+
+.auth-switch{
+
+  text-align:center;
+
+  margin-top:20px;
+
+  color:var(--muted);
+
+}
+
+
+
+.auth-switch span{
+
+  color:var(--orange);
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+}
+
+
+
+/* APP */
+
+
+
+.app{
+
+  min-height:100vh;
+
+  display:flex;
+
+}
+
+
+
+.sidebar{
+
+  width:245px;
+
+  min-height:100vh;
+
+  background:#081b2b;
+
+  border-right:1px solid #20384d;
+
+  padding:22px 15px;
+
+  position:fixed;
+
+  left:0;
+
+  top:0;
+
+  bottom:0;
+
+  z-index:20;
+
+}
+
+
+
+.sidebar .logo{
+
+  padding:5px 10px 30px;
+
+}
+
+
+
+.status{
+
+  margin:0 10px 20px;
+
+  color:#8ea4b6;
+
+  font-size:12px;
+
+  display:flex;
+
+  gap:8px;
+
+  align-items:center;
+
+}
+
+
+
+.status-dot{
+
+  width:8px;
+
+  height:8px;
+
+  background:#12d47d;
+
+  border-radius:50%;
+
+}
+
+
+
+.nav{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+}
+
+
+
+.nav button{
+
+  border:0;
+
+  background:transparent;
+
+  color:#a9bdcc;
+
+  padding:13px;
+
+  border-radius:10px;
+
+  text-align:left;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-weight:600;
+
+}
+
+
+
+.nav button:hover,
+
+.nav button.active{
+
+  background:#153c5d;
+
+  color:white;
+
+}
+
+
+
+.nav-icon{
+
+  width:23px;
+
+  text-align:center;
+
+}
+
+
+
+.sidebar-bottom{
+
+  position:absolute;
+
+  left:15px;
+
+  right:15px;
+
+  bottom:22px;
+
+}
+
+
+
+.profile-mini{
+
+  border-top:1px solid #294157;
+
+  padding:18px 8px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+
+
+.avatar{
+
+  width:42px;
+
+  height:42px;
+
+  border-radius:50%;
+
+  background:var(--orange);
+
+  color:#18202a;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:bold;
+
+}
+
+
+
+.profile-mini small{
+
+  color:#849bad;
+
+}
+
+
+
+.logout{
+
+  width:100%;
+
+  background:transparent;
+
+  border:0;
+
+  color:#9eb1bf;
+
+  text-align:left;
+
+  padding:12px 8px;
+
+}
+
+
+
+.logout:hover{
+
+  color:#ff7777;
+
+}
+
+
+
+.main{
+
+  margin-left:245px;
+
+  width:calc(100% - 245px);
+
+  min-height:100vh;
+
+}
+
+
+
+.topbar{
+
+  height:82px;
+
+  border-bottom:1px solid #20384d;
+
+  background:#081b2b;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 32px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:10;
+
+}
+
+
+
+.top-title{
+
+  font-size:14px;
+
+  color:#7f9aaf;
+
+  letter-spacing:2px;
+
+}
+
+
+
+.top-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+
+
+.coin-badge{
+
+  background:#122c41;
+
+  border:1px solid #385269;
+
+  border-radius:30px;
+
+  padding:10px 15px;
+
+  color:#ffd36a;
+
+  font-weight:bold;
+
+}
+
+
+
+.wallet-badge{
+
+  background:#132d40;
+
+  padding:10px 15px;
+
+  border-radius:30px;
+
+  color:#b9cbd8;
+
+}
+
+
+
+.mobile-menu{
+
+  display:none;
+
+}
+
+
+
+.content{
+
+  padding:35px;
+
+  max-width:1250px;
+
+  margin:auto;
+
+}
+
+
+
+.page{
+
+  display:none;
+
+}
+
+
+
+.page.active{
+
+  display:block;
+
+}
+
+
+
+.page-header{
+
+  margin-bottom:30px;
+
+}
+
+
+
+.eyebrow{
+
+  color:#58b8ef;
+
+  font-size:12px;
+
+  font-weight:bold;
+
+  letter-spacing:2px;
+
+  margin-bottom:10px;
+
+}
+
+
+
+.page-header h1{
+
+  font-size:42px;
+
+  margin-bottom:10px;
+
+}
+
+
+
+.page-header p{
+
+  color:#9eb2c1;
+
+  max-width:700px;
+
+  line-height:1.6;
+
+}
+
+
+
+/* CARDS */
+
+
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:15px;
+
+  margin-bottom:28px;
+
+}
+
+
+
+.stat-card{
+
+  background:#0d2539;
+
+  border:1px solid #284257;
+
+  border-radius:15px;
+
+  padding:24px;
+
+}
+
+
+
+.stat-card span{
+
+  color:#92a9ba;
+
+  font-size:13px;
+
+}
+
+
+
+.stat-card h2{
+
+  font-size:36px;
+
+  margin:12px 0;
+
+}
+
+
+
+.stat-card small{
+
+  color:#17d994;
+
+}
+
+
+
+.grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:20px;
+
+}
+
+
+
+.card{
+
+  background:#0d2539;
+
+  border:1px solid #284257;
+
+  border-radius:16px;
+
+  padding:24px;
+
+}
+
+
+
+.card h2{
+
+  margin-bottom:10px;
+
+}
+
+
+
+.card p{
+
+  color:#91a9ba;
+
+  line-height:1.6;
+
+}
+
+
+
+.action-grid{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:14px;
+
+  margin-top:20px;
+
+}
+
+
+
+.action{
+
+  background:#102d44;
+
+  border:1px solid #34546c;
+
+  padding:22px;
+
+  border-radius:13px;
+
+  cursor:pointer;
+
+  transition:.2s;
+
+}
+
+
+
+.action:hover{
+
+  border-color:var(--orange);
+
+  transform:translateY(-2px);
+
+}
+
+
+
+.action-icon{
+
+  font-size:27px;
+
+  margin-bottom:13px;
+
+}
+
+
+
+.action h3{
+
+  margin-bottom:6px;
+
+}
+
+
+
+.action p{
+
+  color:#8fa7b8;
+
+  font-size:13px;
+
+}
+
+
+
+/* REPORT */
+
+
+
+.report-layout{
+
+  display:grid;
+
+  grid-template-columns:1fr 1.1fr;
+
+  gap:28px;
+
+}
+
+
+
+.info-panel{
+
+  padding:10px 5px;
+
+}
+
+
+
+.info-panel h2{
+
+  font-size:45px;
+
+  line-height:1.05;
+
+  margin-bottom:18px;
+
+}
+
+
+
+.info-panel h2 span{
+
+  color:var(--orange);
+
+}
+
+
+
+.info-panel p{
+
+  color:#9db2c1;
+
+  line-height:1.7;
+
+  font-size:17px;
+
+}
+
+
+
+.privacy{
+
+  margin-top:35px;
+
+  border-top:1px solid #29445a;
+
+  padding-top:20px;
+
+}
+
+
+
+.privacy strong{
+
+  color:#18d99a;
+
+}
+
+
+
+.report-form{
+
+  background:#0d2539;
+
+  border:1px solid #345168;
+
+  border-radius:17px;
+
+  padding:25px;
+
+}
+
+
+
+.two{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:15px;
+
+}
+
+
+
+.upload{
+
+  border:1px dashed #557287;
+
+  min-height:120px;
+
+  border-radius:12px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-direction:column;
+
+  color:#94aaba;
+
+  margin-bottom:18px;
+
+  cursor:pointer;
+
+}
+
+
+
+.upload:hover{
+
+  border-color:var(--orange);
+
+}
+
+
+
+.upload input{
+
+  display:none;
+
+}
+
+
+
+.photo-name{
+
+  color:#16d995;
+
+  margin-top:8px;
+
+  font-size:13px;
+
+}
+
+
+
+/* COMPLAINTS */
+
+
+
+.complaint-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:15px;
+
+}
+
+
+
+.complaint{
+
+  background:#0d2539;
+
+  border:1px solid #2c485e;
+
+  border-radius:14px;
+
+  padding:20px;
+
+  display:grid;
+
+  grid-template-columns:1.2fr 1fr 1fr auto;
+
+  align-items:center;
+
+  gap:15px;
+
+}
+
+
+
+.vehicle{
+
+  font-weight:bold;
+
+  font-size:18px;
+
+}
+
+
+
+.vehicle small{
+
+  display:block;
+
+  color:#8ca5b7;
+
+  font-size:12px;
+
+  margin-top:5px;
+
+}
+
+
+
+.status-pill{
+
+  display:inline-block;
+
+  padding:7px 10px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:bold;
+
+  background:#153c31;
+
+  color:#20dc9d;
+
+}
+
+
+
+.status-pill.pending{
+
+  background:#42351b;
+
+  color:#ffc65d;
+
+}
+
+
+
+.status-pill.closed{
+
+  background:#203d53;
+
+  color:#71c4f3;
+
+}
+.status-pill.accepted{background:#153c31;color:#20dc9d;}
+.status-pill.rejected{background:#482526;color:#ff8c8c;}
+
+
+
+/* REWARDS */
+
+
+
+.reward-hero{
+
+  background:linear-gradient(120deg,#102f45,#123a48);
+
+  border:1px solid #35586a;
+
+  border-radius:20px;
+
+  padding:30px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:22px;
+
+}
+
+
+
+.reward-hero h2{
+
+  font-size:42px;
+
+}
+
+
+
+.reward-hero p{
+
+  color:#9bb2c1;
+
+  margin-top:8px;
+
+}
+
+
+
+.coins-big{
+
+  font-size:52px;
+
+  color:#ffd36b;
+
+  font-weight:900;
+
+}
+
+
+
+.reward-rule{
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:15px;
+
+  margin-bottom:22px;
+
+}
+
+
+
+.rule{
+
+  background:#0d2539;
+
+  border:1px solid #2c485d;
+
+  padding:20px;
+
+  border-radius:14px;
+
+  text-align:center;
+
+}
+
+
+
+.rule strong{
+
+  display:block;
+
+  color:#ffd36b;
+
+  font-size:25px;
+
+  margin-bottom:6px;
+
+}
+
+
+
+/* REDEEM */
+
+
+
+.redeem-box{
+
+  max-width:650px;
+
+  margin:auto;
+
+}
+
+
+
+.redeem-summary{
+
+  background:#081c2c;
+
+  border:1px solid #315068;
+
+  padding:20px;
+
+  border-radius:13px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.redeem-history{
+
+  margin-top:25px;
+
+}
+
+
+
+.redeem-item{
+
+  background:#0d2539;
+
+  border:1px solid #2b465b;
+
+  padding:15px;
+
+  border-radius:12px;
+
+  margin-top:10px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+}
+
+
+
+/* SUPPORT */
+
+
+
+.faq{
+
+  background:#0d2539;
+
+  border:1px solid #29445a;
+
+  border-radius:12px;
+
+  margin-bottom:10px;
+
+  overflow:hidden;
+
+}
+
+
+
+.faq summary{
+
+  padding:18px;
+
+  cursor:pointer;
+
+  font-weight:bold;
+
+}
+
+
+
+.faq div{
+
+  padding:0 18px 18px;
+
+  color:#94aaba;
+
+  line-height:1.6;
+
+}
+
+
+
+/* PROFILE */
+
+
+
+.profile-card{
+
+  max-width:650px;
+
+}
+
+
+
+/* TOAST */
+
+
+
+.toast{
+
+  position:fixed;
+
+  top:90px;
+
+  right:25px;
+
+  z-index:100;
+
+  background:#153d2f;
+
+  border:1px solid #27d99a;
+
+  color:#d8fff1;
+
+  padding:15px 20px;
+
+  border-radius:10px;
+
+  transform:translateX(150%);
+
+  transition:.3s;
+
+  max-width:350px;
+
+}
+
+
+
+.toast.show{
+
+  transform:translateX(0);
+
+}
+
+
+
+/* MODAL */
+
+
+
+.modal-bg{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.7);
+
+  z-index:200;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+}
+
+
+
+.modal{
+
+  width:100%;
+
+  max-width:500px;
+
+  background:#0d2539;
+
+  border:1px solid #36546a;
+
+  border-radius:18px;
+
+  padding:25px;
+
+}
+
+
+
+.modal-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:20px;
+
+}
+
+
+
+.close{
+
+  background:none;
+
+  border:0;
+
+  color:#a7bbc9;
+
+  font-size:25px;
+
+}
+
+
+
+/* RESPONSIVE */
+
+
+
+@media(max-width:900px){
+
+
+
+  .sidebar{
+
+    transform:translateX(-100%);
+
+    transition:.25s;
+
+  }
+
+
+
+  .sidebar.open{
+
+    transform:translateX(0);
+
+  }
+
+
+
+  .main{
+
+    margin-left:0;
+
+    width:100%;
+
+  }
+
+
+
+  .mobile-menu{
+
+    display:block;
+
+    background:none;
+
+    border:0;
+
+    color:white;
+
+    font-size:25px;
+
+  }
+
+
+
+  .topbar{
+
+    padding:0 17px;
+
+  }
+
+
+
+  .top-title{
+
+    display:none;
+
+  }
+
+
+
+  .content{
+
+    padding:22px 17px;
+
+  }
+
+
+
+  .stats,
+
+  .action-grid,
+
+  .grid,
+
+  .report-layout,
+
+  .reward-rule{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+
+  .complaint{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+
+  .wallet-badge{
+
+    display:none;
+
+  }
+
+
+
+  .page-header h1{
+
+    font-size:32px;
+
+  }
+
+
+
+  .reward-hero{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+  }
+
+
+
+  .two{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+
+/* ADMIN PORTAL */
+.admin-shell{min-height:100vh;background:#020b13;color:#fff}
+.admin-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 30px;background:#081b2b;border-bottom:1px solid #20384d;position:sticky;top:0;z-index:10}
+.admin-brand{font-size:23px;font-weight:800;display:flex;align-items:center;gap:10px}
+.admin-brand-mark{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:11px;background:var(--orange);color:#111;font-weight:900}
+.admin-body{max-width:1250px;margin:auto;padding:30px}
+.admin-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.admin-heading h1{font-size:34px;margin-bottom:8px}
+.admin-heading p{color:var(--muted);line-height:1.5}
+.admin-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:24px}
+.admin-stat{background:#0d2539;border:1px solid #284257;border-radius:14px;padding:20px}
+.admin-stat span{display:block;color:#9bb0c2;font-size:13px;margin-bottom:10px}
+.admin-stat strong{font-size:30px}
+.admin-panel{background:#0d2539;border:1px solid #284257;border-radius:16px;padding:22px;margin-bottom:22px}
+.admin-panel h2{margin-bottom:8px}
+.admin-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.admin-tabs button{border:1px solid #34546c;background:#102d44;color:#dce8ef;border-radius:9px;padding:10px 15px}
+.admin-tabs button.active{background:#1769aa;border-color:#2388d9;color:#fff}
+.admin-request{background:#081c2c;border:1px solid #29465e;border-radius:13px;padding:18px;margin-top:13px}
+.admin-request-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px}
+.admin-request h3{font-size:18px;margin-bottom:5px}
+.admin-request p{color:#a7bbc9;line-height:1.55;margin:5px 0;overflow-wrap:anywhere}
+.admin-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.admin-actions button{border:0;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer}
+.btn-accept{background:#16a36a;color:white}
+.btn-reject{background:#c94343;color:white}
+.btn-view{background:#153c5d;color:white;border:1px solid #34546c!important}
+.admin-empty{padding:35px 15px;text-align:center;color:#9bb0c2}
+.admin-badge{display:inline-block;padding:6px 10px;border-radius:20px;background:#42351b;color:#ffc65d;font-size:12px;font-weight:bold}
+.admin-badge.accepted{background:#153c31;color:#20dc9d}
+.admin-badge.rejected{background:#482526;color:#ff8c8c}
+.admin-back{border:1px solid #456177;background:#112c42;color:white;padding:10px 14px;border-radius:9px;cursor:pointer}
+.admin-login-link{display:block;text-align:center;margin-top:14px;color:#ffb347;cursor:pointer;font-weight:bold}
+@media(max-width:700px){.admin-body{padding:18px}.admin-topbar{padding:16px}.admin-stat-grid{grid-template-columns:1fr}.admin-heading h1{font-size:28px}}
+
+
+
+/* GOVERNMENT-STYLE COLOUR THEME — accessible slate-blue palette; colours only */
+:root{
+  --navy:#263B50 !important;
+  --navy2:#34495E !important;
+  --blue:#315F8C !important;
+  --blue2:#4779A8 !important;
+  --orange:#E98A24 !important;
+  --orange2:#F3B34C !important;
+  --green:#198754 !important;
+  --red:#C43D3D !important;
+  --white:#ffffff !important;
+  --muted:#586B7A !important;
+  --line:#D5DFE8 !important;
+  --card:#ffffff !important;
+  --bg:#F4F7FA !important;
+}
+body{background:#F4F7FA !important;color:#263746 !important}
+.auth-page{background:linear-gradient(135deg,#EAF0F7 0%,#F8FAFC 58%,#FFF4E8 100%) !important}
+.auth-box{background:#fff !important;border-color:#D5DFE8 !important;box-shadow:0 18px 50px rgba(38,59,80,.13) !important;color:#263746 !important}
+.auth-box p,.form-group label{color:#586B7A !important}
+input,select,textarea{background:#fff !important;color:#263746 !important;border-color:#C9D5E0 !important}
+input::placeholder,textarea::placeholder{color:#718292 !important}
+.topbar,.navbar,.header,.main-header,.admin-topbar{background:#263B50 !important;color:#fff !important;border-color:#D5DFE8 !important}
+.sidebar,.side-nav,.nav-panel{background:#34495E !important;color:#fff !important}
+.card,.stat-card,.complaint,.report-card,.reward-card,.profile-card,.admin-stat,.admin-panel,.admin-request,.modal-content,.modal-box,.wallet-card,.content-card{background:#fff !important;color:#263746 !important;border-color:#D5DFE8 !important;box-shadow:0 5px 18px rgba(38,59,80,.06) !important}
+.page-header h1,.admin-heading h1,.admin-panel h2,.admin-request h3,.card h2,.card h3{color:#263B50 !important}
+.admin-shell{background:#F4F7FA !important;color:#263746 !important}
+.admin-topbar{background:#263B50 !important;border-bottom:3px solid #E98A24 !important}
+.admin-heading p,.admin-stat span,.admin-request p,.admin-empty{color:#586B7A !important}
+.admin-tabs button{background:#E9EFF5 !important;color:#263B50 !important;border-color:#D5DFE8 !important}
+.admin-tabs button.active{background:#315F8C !important;border-color:#315F8C !important;color:#fff !important}
+.admin-badge{background:#FFF0D9 !important;color:#87500B !important}
+.admin-badge.accepted{background:#E0F3E8 !important;color:#176B46 !important}
+.admin-badge.rejected{background:#FDE8E7 !important;color:#A32626 !important}
+.admin-back,.btn-view{background:#315F8C !important;color:#fff !important;border-color:#315F8C !important}
+.btn-accept{background:#198754 !important;color:#fff !important}
+.btn-reject{background:#C43D3D !important;color:#fff !important}
+button.primary,.btn-primary,.submit-btn,.cta-button{background:#315F8C !important;color:#fff !important;border-color:#315F8C !important}
+button.secondary,.btn-secondary{background:#E9EFF5 !important;color:#263B50 !important;border-color:#D5DFE8 !important}
+.status,.badge{border-color:#D5DFE8 !important}
+hr{border-color:#D5DFE8 !important}
+/* Restrained official saffron accent */
+.logo-icon,.admin-brand-mark{background:#E98A24 !important;color:#fff !important}
+.wallet-badge,.coin-badge{background:#E9EFF5 !important;color:#263B50 !important;border-color:#D5DFE8 !important}
+
+
+/* READABILITY FIX: citizen/admin profile modal uses a light surface with dark text */
+.modal-bg{background:rgba(12,25,38,.62) !important;}
+.modal{background:#FFFFFF !important;color:#263746 !important;border:1px solid #C9D5E0 !important;box-shadow:0 20px 60px rgba(10,30,50,.28) !important;}
+.modal h1,.modal h2,.modal h3,.modal p,.modal span,.modal label,.modal strong,.modal b,.modal div{color:#263746;}
+.modal .modal-head{border-bottom:1px solid #D5DFE8 !important;}
+.modal .close{color:#526779 !important;}
+.modal hr{border-color:#D5DFE8 !important;}
+.modal button:not(.primary):not(.btn-primary){color:#263746;}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- LOGIN -->
+
+
+
+<section id="loginPage" class="auth-page">
+
+  <div class="auth-box">
+
+
+
+    <div class="logo">
+
+      <div class="logo-icon">C</div>
+
+      CivicPulse
+
+    </div>
+
+
+
+    <h1>Welcome</h1>
+
+    <p>Report vehicle violations, follow complaints and earn rewards.</p>
+
+
+
+    <form onsubmit="login(event)">
+
+
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input id="loginEmail" type="email" placeholder="Enter your email" required>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input id="loginPassword" type="password" placeholder="Enter your password" required>
+
+      </div>
+
+
+
+      <button class="primary-btn">Sign in</button>
+
+
+
+    </form>
+
+
+
+    <div class="auth-switch">
+
+      New here?
+
+      <span onclick="showRegister()">Create an account</span>
+
+    </div>
+      <span class="admin-login-link" onclick="showAdminLogin()">Admin login</span>
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+<!-- REGISTER -->
+
+
+
+<section id="registerPage" class="auth-page hidden">
+
+  <div class="auth-box">
+
+
+
+    <div class="logo">
+
+      <div class="logo-icon">C</div>
+
+      CivicPulse
+
+    </div>
+
+
+
+    <h1>Create account</h1>
+
+    <p>Join the community and help make roads safer.</p>
+
+
+
+    <form onsubmit="register(event)">
+
+
+
+      <div class="form-group">
+
+        <label>Full name</label>
+
+        <input id="regName" type="text" placeholder="Your name" required>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label>Email</label>
+
+        <input id="regEmail" type="email" placeholder="Your email" required>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label>Mobile number</label>
+
+        <input id="regPhone" type="tel" placeholder="10 digit mobile number" required>
+
+      </div>
+
+
+
+      <div class="form-group">
+
+        <label>Password</label>
+
+        <input id="regPassword" type="password" placeholder="Create password" required>
+
+      </div>
+
+
+
+      <button class="primary-btn">Create account</button>
+
+
+
+    </form>
+
+
+
+    <div class="auth-switch">
+
+      Already have an account?
+
+      <span onclick="showLogin()">Sign in</span>
+
+    </div>
+
+
+
+  </div>
+
+</section>
+
+
+
+
+
+
+<!-- ADMIN LOGIN -->
+<section id="adminLoginPage" class="auth-page hidden">
+  <div class="auth-box">
+    <div class="logo"><div class="logo-icon">C</div>CivicPulse</div>
+    <h1>Admin login</h1>
+    <p>Sign in to review citizen requests.</p>
+    <form onsubmit="adminLogin(event)">
+      <div class="form-group"><label>Admin email</label><input id="adminEmail" type="email" placeholder="admin@civicpulse.com" required></div>
+      <div class="form-group"><label>Password</label><input id="adminPassword" type="password" placeholder="Enter admin password" required></div>
+      <button class="primary-btn" type="submit">Sign in as admin</button>
+    </form>
+    <p style="font-size:12px;margin:14px 0 0">Use the administrator credentials configured by the system administrator.</p>
+    <span class="admin-login-link" onclick="backToCitizenLogin()">← Back to citizen login</span>
+  </div>
+</section>
+
+<!-- APPLICATION -->
+
+
+
+<div id="app" class="app hidden">
+
+
+
+  <!-- SIDEBAR -->
+
+
+
+  <aside id="sidebar" class="sidebar">
+
+
+
+    <div class="logo">
+
+      <div class="logo-icon">C</div>
+
+      CivicPulse
+
+    </div>
+
+
+
+    <div class="status">
+
+      <span class="status-dot"></span>
+
+      CITIZEN DESK
+
+    </div>
+
+
+
+    <nav class="nav">
+
+
+
+      <button data-page="overview" onclick="openPage('overview')">
+
+        <span class="nav-icon">▦</span>
+
+        Overview
+
+      </button>
+
+
+
+      <button data-page="report" onclick="openPage('report')">
+
+        <span class="nav-icon">▣</span>
+
+        Report violation
+
+      </button>
+
+
+
+      <button data-page="complaints" onclick="openPage('complaints')">
+
+        <span class="nav-icon">▤</span>
+
+        My complaints
+
+      </button>
+
+
+
+      <button data-page="rewards" onclick="openPage('rewards')">
+
+        <span class="nav-icon">★</span>
+
+        Rewards
+
+      </button>
+
+
+
+      <button data-page="redeem" onclick="openPage('redeem')">
+
+        <span class="nav-icon">₹</span>
+
+        Redeem rewards
+
+      </button>
+
+
+
+      <button data-page="support" onclick="openPage('support')">
+
+        <span class="nav-icon">?</span>
+
+        Help & support
+
+      </button>
+
+
+
+      <button data-page="profile" onclick="openPage('profile')">
+
+        <span class="nav-icon">◉</span>
+
+        Account
+
+      </button>
+
+
+
+    </nav>
+
+
+
+    <div class="sidebar-bottom">
+
+
+
+      <div class="profile-mini">
+
+        <div id="sideAvatar" class="avatar">C</div>
+
+        <div>
+
+          <strong id="sideName">Citizen</strong>
+
+          <small>Citizen reporter</small>
+
+        </div>
+
+      </div>
+
+
+
+      <button class="logout" onclick="logout()">
+
+        ↪ Sign out
+
+      </button>
+
+
+
+    </div>
+
+
+
+  </aside>
+
+
+
+
+
+  <!-- MAIN -->
+
+
+
+  <main class="main">
+
+
+
+    <header class="topbar">
+
+
+
+      <button class="mobile-menu" onclick="toggleSidebar()">☰</button>
+
+
+
+      <div class="top-title">CIVICPULSE / CITIZEN DESK</div>
+
+
+
+      <div class="top-right">
+
+
+
+        <div class="coin-badge">
+
+          🪙 <span id="topCoins">0</span> coins
+
+        </div>
+
+
+
+        <div class="wallet-badge">
+
+          ₹<span id="topMoney">0</span>
+
+        </div>
+
+
+
+        <div id="topAvatar" class="avatar">C</div>
+
+
+
+      </div>
+
+
+
+    </header>
+
+
+
+
+
+    <div class="content">
+
+
+
+
+
+      <!-- OVERVIEW -->
+
+
+
+      <section id="overview" class="page active">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">CITIZEN DESK</div>
+
+
+
+          <h1>Make roads safer.</h1>
+
+
+
+          <p>
+
+            Report traffic and vehicle violations, follow the progress of
+
+            your complaints and receive rewards for verified reports.
+
+          </p>
+
+
+
+        </div>
+
+
+
+        <div class="stats">
+
+
+
+          <div class="stat-card">
+
+            <span>ACTIVE REPORTS</span>
+
+            <h2 id="activeReports">0</h2>
+
+            <small>Currently being reviewed</small>
+
+          </div>
+
+
+
+          <div class="stat-card">
+
+            <span>VERIFIED REPORTS</span>
+
+            <h2 id="verifiedReports">0</h2>
+
+            <small>Reports that earned rewards</small>
+
+          </div>
+
+
+
+          <div class="stat-card">
+
+            <span>WALLET VALUE</span>
+
+            <h2>₹<span id="walletValue">0</span></h2>
+
+            <small>10 coins = ₹10</small>
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="card">
+
+
+
+          <h2>Quick actions</h2>
+
+
+
+          <p>
+
+            Choose an action to manage your citizen reports.
+
+          </p>
+
+
+
+          <div class="action-grid">
+
+
+
+            <div class="action" onclick="openPage('report')">
+
+              <div class="action-icon">📷</div>
+
+              <h3>Report violation</h3>
+
+              <p>Share a vehicle violation with the RTO.</p>
+
+            </div>
+
+
+
+            <div class="action" onclick="openPage('complaints')">
+
+              <div class="action-icon">📋</div>
+
+              <h3>Track complaint</h3>
+
+              <p>Check your complaint and vehicle history.</p>
+
+            </div>
+
+
+
+            <div class="action" onclick="openPage('rewards')">
+
+              <div class="action-icon">🪙</div>
+
+              <h3>View rewards</h3>
+
+              <p>Check earned coins and available balance.</p>
+
+            </div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- REPORT -->
+
+
+
+      <section id="report" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">NEW REPORT</div>
+
+
+
+          <h1>Spot it. <span style="color:var(--orange)">Share it.</span></h1>
+
+
+
+          <p>
+
+            Give the RTO team useful information so the reported
+
+            vehicle can be reviewed.
+
+          </p>
+
+
+
+        </div>
+
+
+
+        <div class="report-layout">
+
+
+
+          <div class="info-panel">
+
+
+
+            <h2>
+
+              Your report can
+
+              <span>make a difference.</span>
+
+            </h2>
+
+
+
+            <p>
+
+              Add the vehicle number, location, violation type,
+
+              description and a clear photograph whenever possible.
+
+            </p>
+
+
+
+            <div class="privacy">
+
+              <strong>🔒 Privacy</strong>
+
+              <p>
+
+                Your personal information is not displayed publicly
+
+                with your complaint.
+
+              </p>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+          <form class="report-form" onsubmit="submitReport(event)">
+
+
+
+            <div class="two">
+
+
+
+              <div class="form-group">
+
+                <label>Vehicle registration</label>
+
+                <input id="vehicleNumber"
+
+                       placeholder="MH 01 AB 1234"
+
+                       required>
+
+              </div>
+
+
+
+              <div class="form-group">
+
+                <label>City / RTO</label>
+
+
+
+                <select id="rto">
+
+                  <option>Mumbai</option>
+
+                  <option>Nashik</option>
+
+                  <option>Pune</option>
+
+                  <option>Nagpur</option>
+
+                  <option>Thane</option>
+
+                  <option>Aurangabad</option>
+
+                  <option>Other</option>
+
+                </select>
+
+
+
+              </div>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+              <label>What happened?</label>
+
+
+
+              <select id="violation">
+
+                <option>No parking</option>
+
+                <option>Wrong-side driving</option>
+
+                <option>Dangerous driving</option>
+
+                <option>Signal violation</option>
+
+                <option>Illegal parking</option>
+
+                <option>Overloading</option>
+
+                <option>Number plate violation</option>
+
+                <option>Other</option>
+
+              </select>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+
+
+              <label>Where did it happen?</label>
+
+
+
+              <input id="location"
+
+                     placeholder="Street, landmark or junction"
+
+                     required>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+
+
+              <label>What did you observe?</label>
+
+
+
+              <textarea id="description"
+
+                        placeholder="Add useful information for the RTO officer..."
+
+                        required></textarea>
+
+
+
+            </div>
+
+
+
+
+
+            <label class="upload">
+
+
+
+              <div style="font-size:32px">📷</div>
+
+
+
+              <strong>Attach vehicle photo</strong>
+
+
+
+              <span>JPG, PNG or WEBP</span>
+
+
+
+              <input id="vehiclePhoto"
+
+                     type="file"
+
+                     accept="image/*"
+
+                     onchange="showPhoto(this)">
+
+
+
+              <div id="photoName" class="photo-name"></div>
+
+
+
+            </label>
+
+
+
+
+
+            <button class="primary-btn">
+
+              Send report →
+
+            </button>
+
+
+
+          </form>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- COMPLAINTS -->
+
+
+
+      <section id="complaints" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">CASE HISTORY</div>
+
+
+
+          <h1>My complaints</h1>
+
+
+
+          <p>
+
+            Follow each report from submission to review.
+
+          </p>
+
+
+
+        </div>
+
+
+
+        <div id="complaintList" class="complaint-list"></div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- REWARDS -->
+
+
+
+      <section id="rewards" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">REWARD CENTRE</div>
+
+
+
+          <h1>Your rewards</h1>
+
+
+
+          <p>
+
+            Verified vehicle reports can earn coins that can be
+
+            redeemed as INR rewards.
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="reward-hero">
+
+
+
+          <div>
+
+            <h2 id="rewardCoins">0 coins</h2>
+
+            <p>Your current reward balance</p>
+
+          </div>
+
+
+
+          <div class="coins-big">
+
+            ₹<span id="rewardRupees">0</span>
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="reward-rule">
+
+
+
+          <div class="rule">
+
+            <strong>10</strong>
+
+            Coins per verified vehicle report
+
+          </div>
+
+
+
+          <div class="rule">
+
+            <strong>10 = ₹10</strong>
+
+            Reward conversion
+
+          </div>
+
+
+
+          <div class="rule">
+
+            <strong>UPI</strong>
+
+            Available redemption method
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="card">
+
+
+
+          <h2>How rewards work</h2>
+
+
+
+          <p>
+
+            1. Submit a vehicle report.<br><br>
+
+            2. The report is reviewed.<br><br>
+
+            3. A verified report receives 10 coins.<br><br>
+
+            4. Coins can be requested for redemption using UPI.
+
+          </p>
+
+
+
+          <br>
+
+
+
+          <button class="primary-btn"
+
+                  style="max-width:300px"
+
+                  onclick="openPage('redeem')">
+
+            Redeem rewards →
+
+          </button>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- REDEEM -->
+
+
+
+      <section id="redeem" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">REWARD REDEMPTION</div>
+
+
+
+          <h1>Redeem rewards</h1>
+
+
+
+          <p>
+
+            Request your available reward balance through UPI.
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="redeem-box">
+
+
+
+          <div class="redeem-summary">
+
+
+
+            <div>
+
+              <span style="color:#8fa7b8">Available coins</span>
+
+              <h2><span id="redeemCoins">0</span> coins</h2>
+
+            </div>
+
+
+
+            <div style="text-align:right">
+
+              <span style="color:#8fa7b8">Value</span>
+
+              <h2>₹<span id="redeemValue">0</span></h2>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+          <div class="card">
+
+
+
+            <h2>UPI redemption</h2>
+
+
+
+            <p style="margin-bottom:20px">
+
+              Enter the UPI ID where you want to receive your reward.
+
+            </p>
+
+
+
+
+
+            <form onsubmit="redeemReward(event)">
+
+
+
+              <div class="form-group">
+
+
+
+                <label>UPI ID</label>
+
+
+
+                <input id="upiId"
+
+                       placeholder="example@upi"
+
+                       required>
+
+
+
+              </div>
+
+
+
+
+
+              <div class="form-group">
+
+
+
+                <label>Coins to redeem</label>
+
+
+
+                <input id="redeemAmount"
+
+                       type="number"
+
+                       min="10"
+
+                       step="10"
+
+                       placeholder="10"
+
+                       required>
+
+
+
+              </div>
+
+
+
+
+
+              <button class="primary-btn">
+
+                Submit redemption request
+
+              </button>
+
+
+
+            </form>
+
+
+
+          </div>
+
+
+
+
+
+          <div class="redeem-history">
+
+
+
+            <h2>Redemption history</h2>
+
+
+
+            <div id="redemptionList"></div>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- SUPPORT -->
+
+
+
+      <section id="support" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">HELP CENTRE</div>
+
+
+
+          <h1>Help & support</h1>
+
+
+
+          <p>
+
+            Find answers or contact the CivicPulse support team.
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="grid">
+
+
+
+          <div>
+
+
+
+            <div class="faq">
+
+
+
+              <details>
+
+
+
+                <summary>How do I report a vehicle?</summary>
+
+
+
+                <div>
+
+                  Open Report violation, enter the vehicle number,
+
+                  location and violation details, then submit your report.
+
+                </div>
+
+
+
+              </details>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="faq">
+
+
+
+              <details>
+
+
+
+                <summary>How are rewards calculated?</summary>
+
+
+
+                <div>
+
+                  Each verified vehicle report provides 10 coins.
+
+                  10 coins are equal to ₹10.
+
+                </div>
+
+
+
+              </details>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="faq">
+
+
+
+              <details>
+
+
+
+                <summary>How can I redeem rewards?</summary>
+
+
+
+                <div>
+
+                  Open Redeem rewards, enter your UPI ID and select
+
+                  the number of coins you want to redeem.
+
+                </div>
+
+
+
+              </details>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="faq">
+
+
+
+              <details>
+
+
+
+                <summary>Can I see my vehicle complaint history?</summary>
+
+
+
+                <div>
+
+                  Yes. My complaints contains your submitted vehicle
+
+                  numbers, violation types, locations and statuses.
+
+                </div>
+
+
+
+              </details>
+
+
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+
+          <div class="card">
+
+
+
+            <h2>Contact support</h2>
+
+
+
+            <p style="margin-bottom:20px">
+
+              Send us your question and we will keep it in your
+
+              support history.
+
+            </p>
+
+
+
+            <form onsubmit="sendSupport(event)">
+
+
+
+              <div class="form-group">
+
+
+
+                <label>Email</label>
+
+
+
+                <input id="supportEmail"
+
+                       type="email"
+
+                       placeholder="Your email"
+
+                       required>
+
+
+
+              </div>
+
+
+
+
+
+              <div class="form-group">
+
+
+
+                <label>Message</label>
+
+
+
+                <textarea id="supportMessage"
+
+                          placeholder="How can we help?"
+
+                          required></textarea>
+
+
+
+              </div>
+
+
+
+
+
+              <button class="primary-btn">
+
+                Send message
+
+              </button>
+
+
+
+            </form>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+
+
+      <!-- PROFILE -->
+
+
+
+      <section id="profile" class="page">
+
+
+
+        <div class="page-header">
+
+
+
+          <div class="eyebrow">ACCOUNT</div>
+
+
+
+          <h1>Account settings</h1>
+
+
+
+          <p>
+
+            Manage your CivicPulse account information.
+
+          </p>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="card profile-card">
+
+
+
+          <form onsubmit="saveProfile(event)">
+
+
+
+            <div class="form-group">
+
+
+
+              <label>Full name</label>
+
+
+
+              <input id="profileName" required>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+
+
+              <label>Email</label>
+
+
+
+              <input id="profileEmail"
+
+                     type="email"
+
+                     required>
+
+
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+
+
+              <label>Mobile number</label>
+
+
+
+              <input id="profilePhone">
+
+
+
+            </div>
+
+
+
+
+
+            <button class="primary-btn">
+
+              Save changes
+
+            </button>
+
+
+
+          </form>
+
+
+
+        </div>
+
+
+
+      </section>
+
+
+
+    </div>
+
+
+
+  </main>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ADMIN PORTAL -->
+<section id="adminPortal" class="admin-shell hidden">
+  <header class="admin-topbar">
+    <div class="admin-brand"><span class="admin-brand-mark">C</span> CivicPulse <span style="color:#8fa7b8;font-size:13px;font-weight:500">ADMIN</span></div>
+    <button class="admin-back" onclick="adminLogout()">Sign out</button>
+  </header>
+  <main class="admin-body">
+    <div class="admin-heading">
+      <div><h1>Admin Dashboard</h1><p>Review citizen vehicle-violation reports and manage requests.</p></div>
+      <button class="secondary-btn" onclick="refreshAdminPortal()">↻ Refresh requests</button>
+    </div>
+    <div class="admin-stat-grid">
+      <div class="admin-stat"><span>PENDING REQUESTS</span><strong id="adminPendingCount">0</strong></div>
+      <div class="admin-stat"><span>ACCEPTED REQUESTS</span><strong id="adminAcceptedCount">0</strong></div>
+      <div class="admin-stat"><span>REJECTED REQUESTS</span><strong id="adminRejectedCount">0</strong></div>
+    </div>
+    <div class="admin-panel">
+      <h2>Citizen requests</h2>
+      <p style="color:#9bb0c2">Open a request to see citizen details. Accept or reject each pending request.</p>
+      <div class="admin-tabs">
+        <button id="adminTabPending" class="active" onclick="setAdminTab('pending')">Pending</button>
+        <button id="adminTabAccepted" onclick="setAdminTab('accepted')">Accepted</button>
+        <button id="adminTabRejected" onclick="setAdminTab('rejected')">Rejected</button>
+        <button id="adminTabAll" onclick="setAdminTab('all')">All requests</button>
+      </div>
+      <div id="adminRequests"></div>
+    </div>
+  </main>
+</section>
+
+<!-- TOAST -->
+
+
+
+<div id="toast" class="toast"></div>
+
+
+
+
+
+<!-- MODAL -->
+
+
+
+<div id="modalBg" class="modal-bg hidden">
+
+
+
+  <div class="modal">
+
+
+
+    <div class="modal-head">
+
+
+
+      <h2 id="modalTitle">Message</h2>
+
+
+
+      <button class="close"
+
+              onclick="closeModal()">×</button>
+
+
+
+    </div>
+
+
+
+    <div id="modalContent"></div>
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<script src="/app.js" defer></script>
+
+</body>
+</html>
